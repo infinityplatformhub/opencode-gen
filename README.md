@@ -6,11 +6,10 @@ No global installation, custom agent, or default plugin. Model/provider settings
 
 ## Install
 
-Requires Python 3 and OpenCode v2. Clone the official `master` branch:
+Requires Python 3, curl, tar, and OpenCode v2. Run in the project you want to install into:
 
 ```sh
-git clone --branch master git@github.com:infinityplatformhub/opencode-gen.git
-sh opencode-gen/install.sh /path/to/project
+curl -fsSL https://raw.githubusercontent.com/infinityplatformhub/opencode-gen/master/install.sh | sh
 ```
 
 The installer seeds `.ctx/`, creates a bootstrap ticket, adds a bounded managed section to
@@ -18,7 +17,9 @@ AGENTS.md, and installs project commands/skills. Existing organization instructi
 are preserved. Customized managed files cause a conflict instead of silent replacement.
 Run `/opencode-gen-init` in the target to confirm preferences and verify the bootstrap ticket.
 
-HTTPS alternative: `https://github.com/infinityplatformhub/opencode-gen.git`.
+To select another project, append `sh -s -- /path/to/project` instead of `sh`.
+No clone or GitHub login is needed; the installer downloads and cleans up the official archive.
+From an existing checkout, `sh install.sh /path/to/project` also works.
 Run `sh install.sh --help` for installer usage. Use `/opencode-gen-update` to update from
 the official master branch while preserving project data and local source changes.
 

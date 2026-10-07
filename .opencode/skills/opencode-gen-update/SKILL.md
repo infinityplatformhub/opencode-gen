@@ -10,8 +10,11 @@ Use the supplied checkout path or `.ctx/local/framework/source.json`. Official o
 `git@github.com:infinityplatformhub/opencode-gen.git`, branch `master` (HTTPS also works).
 For a local checkout, inspect its origin and working tree first. Fetch master and fast-forward
 only when clean and tracking the official source; never reset or overwrite local changes.
-If the checkout is missing, clone the official master branch into a unique private temporary
-directory. Never pull the target project's origin. Run `sh <source>/install.sh <project>`.
+If no persistent checkout is available, run the official one-line installer with the project
+path: `curl -fsSL https://raw.githubusercontent.com/infinityplatformhub/opencode-gen/master/install.sh | sh -s -- <project>`.
+Quote the actual project path. Check curl/download failures and do not report success without
+installer output. No user-managed clone or SSH authentication is needed for this route.
+Never pull the target project's origin. For a persistent checkout run `sh <source>/install.sh <project>`.
 When using a temporary checkout, clear the recorded local source path after installation and
 retain origin/branch so the next update can clone again. Remove only the temporary clone created
 by this operation. On network or authentication failure, preserve installed state and report.

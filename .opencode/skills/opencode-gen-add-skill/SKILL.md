@@ -7,7 +7,10 @@ description: List or activate selected skills from the OpenCode Gen curated libr
 
 First load `opencode-gen-ticket` and establish a ticket. Coding skills are opt-in, not default.
 Library: `skills-library/` in the checkout recorded by `.ctx/local/framework/source.json`.
-If unavailable, ask for the source path; do not guess a remote. Read `_index.json` before
+If unavailable (including one-line installations), download the official master archive from
+`https://codeload.github.com/infinityplatformhub/opencode-gen/tar.gz/refs/heads/master`
+into a unique `.ctx/local/` temporary directory and use its library. Clean up that download
+after activation; do not require the user to clone anything. Read `_index.json` before
 resolving any requested name. Cache missing downloads privately under `.ctx/local/`.
 
 - No name: list relevant inactive skills with descriptions and installed status.

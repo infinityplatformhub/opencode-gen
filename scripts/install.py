@@ -1,6 +1,7 @@
 """Project-local installation with owned-file conflict detection."""
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import sys
@@ -108,7 +109,7 @@ def install(source, target):
         destination = assets / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source / relative, destination)
-    (assets / "source.json").write_text(json.dumps({"path": str(source),
+    (assets / "source.json").write_text(json.dumps({"path": None if os.environ.get("OPENCODE_GEN_EPHEMERAL_SOURCE") == "1" else str(source),
         "origin": "git@github.com:infinityplatformhub/opencode-gen.git", "branch": "master"}, indent=2) + "\n")
     # Library remains in the source checkout; activation is opt-in, no per-project cache copy.
     managed = {name: digest(data) for name, data in desired.items()

@@ -1,4 +1,6 @@
 import json
+import os
+import tarfile
 from pathlib import Path
 import subprocess
 import tempfile
@@ -8,6 +10,29 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 class FrameworkTests(unittest.TestCase):
+    def test_pipe_install_downloads_and_cleans_temporary_source(self):
+        with tempfile.TemporaryDirectory(dir="/tmp/opencode") as temp:
+            base = Path(temp)
+            archive = base / "source.tar.gz"
+            with tarfile.open(archive, "w:gz") as tar:
+                for name in ("scripts", "bootstrap", ".opencode"):
+                    tar.add(ROOT / name, arcname="opencode-gen-master/" + name)
+            commands = base / "bin"
+            commands.mkdir()
+            curl = commands / "curl"
+            curl.write_text('#!/bin/sh\ncp "$TEST_ARCHIVE" "$4"\n')
+            curl.chmod(0o755)
+            project = base / "project with spaces"
+            project.mkdir()
+            env = dict(os.environ, PATH=str(commands) + os.pathsep + os.environ["PATH"], TEST_ARCHIVE=str(archive))
+            result = subprocess.run(["sh"], input=(ROOT / "install.sh").read_text(),
+                                    cwd=project, env=env, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            source = json.loads((project / ".ctx/local/framework/source.json").read_text())
+            self.assertIsNone(source["path"])
+            self.assertEqual(source["branch"], "master")
+            self.assertTrue((project / "AGENTS.md").exists())
+
     def install(self, target, success=True):
         result = subprocess.run(["sh", str(ROOT / "install.sh"), str(target)], capture_output=True, text=True)
         self.assertEqual(result.returncode == 0, success, result.stderr)

@@ -3,8 +3,9 @@
 Use `/opencode-gen-update [local-checkout]`. Establish a ticket first. The source path falls back
 to `.ctx/local/framework/source.json`. Official origin is
 `git@github.com:infinityplatformhub/opencode-gen.git`, branch `master`. Update clean official
-checkouts by fast-forward only; preserve local changes. If the source checkout is unavailable,
-clone master privately for the update. Never pull the target project's origin.
+checkouts by fast-forward only; preserve local changes. If no source checkout is available,
+use the official one-line installer, which downloads and cleans up the master archive.
+No manual clone or SSH authentication is required. Never pull the target project's origin.
 
 The installer updates owned command/skill/workflow files after verifying their recorded hashes.
 Customized or unowned conflicts stop before replacement. Existing context data and preferences are

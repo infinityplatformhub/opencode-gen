@@ -1,8 +1,13 @@
 # Getting started
 
-Run `sh /path/to/opencode-gen/install.sh /path/to/project`, then `/opencode-gen-init` in that
-project's OpenCode workspace. Installation is project-only and requires Python 3. Clone
-`git@github.com:infinityplatformhub/opencode-gen.git` on `master` first. The bootstrap ticket
+Run this from the target project, then `/opencode-gen-init` in its OpenCode workspace:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/infinityplatformhub/opencode-gen/master/install.sh | sh
+```
+
+Installation is project-only and requires Python 3, curl, and tar. No checkout or GitHub login
+is needed. To specify a target, use `| sh -s -- /path/to/project`. The bootstrap ticket
 remains open until setup is actually verified.
 
 Confirm ticket prefix, shared/private default, conversation language, and commit mode. Existing
