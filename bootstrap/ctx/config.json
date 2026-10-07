@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "ticket_prefix": "T-",
+  "default_visibility": "shared",
+  "commit_mode": "manual"
+}

@@ -1,0 +1,39 @@
+# OpenCode Gen
+.ctx/local.md
+.ctx/local/
+.opencode/opencode-gen/
+.opencode-gen-backup/
+__pycache__/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.jsonl
+logs/
+
+# Temp
+tmp/
+temp/
+
+# ─── Add stack-specific ignores during init ──────────────────
+# Examples:
+# node_modules/
+# __pycache__/
+# *.pyc
+# vendor/
+# bin/
+# dist/
+# .output/
