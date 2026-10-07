@@ -51,7 +51,7 @@ class FrameworkTests(unittest.TestCase):
             self.assertLess(len(agents.encode()), 2048)
             self.assertIn("// custom", (root / "opencode.jsonc").read_text())
             self.assertEqual(len(list((root / ".opencode/skills").rglob("SKILL.md"))), 7)
-            self.assertFalse((root / ".opencode/plugins").exists())
+            self.assertTrue((root / ".opencode/plugins/opencode-gen-sidebar/tui.tsx").exists())
             self.assertFalse((root / ".ctx/local/framework/skills-library").exists())
             self.assertEqual((root / ".gitignore").read_text().count("/.ctx/local/"), 1)
             result = subprocess.run(["python3", str(ROOT / "scripts/check-context.py"), str(root)], capture_output=True)

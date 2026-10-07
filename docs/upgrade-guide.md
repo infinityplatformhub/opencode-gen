@@ -14,4 +14,4 @@ Keep custom policy outside the managed block; manually review a customized workf
 
 Run the explicit context checker and verify location-scoped native discovery. A fresh session must
 also demonstrate that the model observes the instruction-level ticket gate; registry discovery
-alone does not prove execution. This version has no default context plugin or custom init agent.
+alone does not prove execution. The sidebar plugin renders tickets, not model context; no custom init agent.

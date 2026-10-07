@@ -20,7 +20,10 @@ do not create context in the current subdirectory or select another organization
    remain valid. Use the installed ticket template. Set goal and checkable acceptance criteria.
    Append a one-line ledger entry after re-reading it; never overwrite concurrent entries.
 4. Mark in-progress and work. The current session carries its ticket ID; there is no singleton
-   project-wide active-task file. Record checkpoints on phase changes, blockers, or handoff.
+   project-wide active-task file.
+   If `opencode_gen_select_ticket` is available, call it with the existing ticket ID and its
+   shared/private visibility to bind this session's sidebar. It never replaces ticket creation.
+   Record checkpoints on phase changes, blockers, or handoff.
    If another session owns the same ticket, coordinate or open a separate related ticket.
 5. Load research/memory skills only for relevant work. Reference results instead of copying
    them between files. Resume after compaction by reading this workflow and the selected ticket.

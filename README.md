@@ -2,7 +2,8 @@
 
 **Project-local ticket control for OpenCode v2.** Track work, retain useful research, and
 remember verified facts without turning AGENTS.md into a journal or imposing coding conventions.
-No global installation, custom agent, or default plugin. Model/provider settings are inherited.
+No global installation or custom agent. A project-local sidebar plugin displays ticket progress;
+it does not inject model context. Model/provider settings are inherited.
 
 ## Install
 
@@ -39,6 +40,7 @@ not automatic execution. Verify model adherence in a fresh session; never infer 
 AGENTS.md                 bounded entrypoint; existing org instructions remain
 .opencode/commands/       project slash commands
 .opencode/skills/         project workflow skills
+.opencode/plugins/        ticket sidebar (OpenCode v2.0.24)
 .ctx/config.json          project preferences
 .ctx/index.md             compact context map
 .ctx/rules/workflow.md    authoritative workflow policy
@@ -87,7 +89,18 @@ python3 .ctx/local/framework/scripts/check-context.py /path/to/project
 ```sh
 python3 scripts/validate.py
 python3 -B -m unittest discover -s tests
+node --test tests/sidebar.test.mjs
 ```
 
 See [getting started](docs/getting-started.md), [scope and deployment](docs/deployment-guide.md),
 [skills](docs/skills-guide.md), [migration](docs/migration-flow.md), and [changelog](CHANGELOG.md).
+
+## Ticket sidebar
+
+Title and Context stay native at the top; the plugin appends a compact colored Ticket / Done /
+Next / Blocked card. The native footer already shows path:branch, so it is not duplicated.
+After creating/resuming a ticket, the agent calls `opencode_gen_select_ticket` with its ID and
+visibility. Selection lives in ignored `.ctx/local/sessions/<sessionID>.json`; each session has
+its own selection. Only that ticket is read. No automatic private-ticket scan or model requests.
+The mounted card refreshes every five seconds. Toggle the sidebar with the configured OpenCode
+sidebar shortcut (default leader then b). Start from the project root for ticket selection.

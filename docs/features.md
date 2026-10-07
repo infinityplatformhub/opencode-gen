@@ -2,7 +2,7 @@
 
 - Project-only ticket gate, checkpoint recovery, research evidence, and verified memory.
 - Shared and private ledgers; private identifiers never enter shared indexes.
-- Compact AGENTS entrypoint and on-demand context, without default runtime hooks/plugins.
+- Compact AGENTS entrypoint and on-demand context; sidebar plugin displays ticket progress only.
 - Local install/update, owned-file conflict detection, bounded backups, opt-in coding skills.
 - Native command/skill discovery; selected session model and organization conventions remain.
 

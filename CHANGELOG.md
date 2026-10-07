@@ -1,5 +1,12 @@
 # Changelog
 
+## Session ticket sidebar — 2026-10-07
+
+- Append a theme-colored ticket card below native sidebar content, with Done/Next/Blocked.
+- Reuse native path:branch footer; no duplicate context usage or Git subprocesses.
+- Session-specific private selection, explicit ticket binding tool, bounded display, mounted-only refresh.
+- Verify plugin activation and TUI rendering against OpenCode v2.0.24.
+
 ## Project ticket workspace redesign — 2026-10-07
 
 - Project-only installation; no global assets, default plugin, or custom init agent.

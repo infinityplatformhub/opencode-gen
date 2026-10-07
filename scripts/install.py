@@ -31,6 +31,9 @@ def install(source, target):
     manifest_path = assets / "manifest.json"
     previous = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
     desired = {}
+    for file in (source / "bootstrap/sidebar").glob("*"):
+        if file.is_file():
+            desired[".opencode/plugins/opencode-gen-sidebar/" + file.name] = file.read_bytes()
     for folder in ("commands", "skills"):
         for file in (source / ".opencode" / folder).rglob("*.md"):
             desired[str(file.relative_to(source))] = file.read_bytes()
