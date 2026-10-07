@@ -66,6 +66,21 @@ class FrameworkTests(unittest.TestCase):
             self.install(root, success=False)
             self.assertEqual(rule.read_text(), "Organization customization")
 
+    def test_language_preferences_survive_reinstall(self):
+        for language in ("th", "en", "Japanese"):
+            with self.subTest(language=language), tempfile.TemporaryDirectory(dir="/tmp/opencode") as temp:
+                root = Path(temp)
+                self.install(root)
+                config_path = root / ".ctx/config.json"
+                config = json.loads(config_path.read_text())
+                self.assertIsNone(config["conversation_language"])
+                self.assertFalse(config["preferences_confirmed"])
+                config.update(conversation_language=language, preferences_confirmed=True, organization_setting="keep")
+                config_path.write_text(json.dumps(config))
+                self.install(root)
+                self.assertEqual(json.loads(config_path.read_text()), config)
+                self.assertIn("conversation_language", (root / "AGENTS.md").read_text())
+
     def test_private_bootstrap_does_not_enter_shared_ledger(self):
         with tempfile.TemporaryDirectory(dir="/tmp/opencode") as temp:
             root = Path(temp)

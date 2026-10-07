@@ -1,5 +1,9 @@
 {
   "version": 1,
+  "preferences_confirmed": false,
+  "conversation_language": null,
+  "stack": { "status": "undecided", "components": [], "profiles": [] },
+  "skills": { "auto": true, "installed": [] },
   "ticket_prefix": "T-",
   "default_visibility": "shared",
   "commit_mode": "manual"

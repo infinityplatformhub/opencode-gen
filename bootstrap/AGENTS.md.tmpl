@@ -2,6 +2,8 @@
 ## Project ticket workflow
 
 This project uses `.ctx/`. Resolve that directory relative to this AGENTS.md, not the shell cwd.
+First read `.ctx/config.json` and apply its conversation_language to all conversation,
+questions, progress, and reports (code, comments, commits, and documents remain English).
 Before substantive work, read `.ctx/index.md` and `.ctx/rules/workflow.md`, then load the
 `opencode-gen-ticket` skill unless its current instructions are already in context.
 **No ticket, no work:** resume a matching ticket or create one before investigation, research,
@@ -9,5 +11,7 @@ implementation, or verification. Bootstrap reads needed to establish a ticket ar
 Greetings and clarification-only replies do not require a ticket.
 After compaction or session/workspace changes, recover the applicable project workflow and ticket.
 Load research/memory skills only when the task requires them. Never preload private data.
+When config skills.auto is true, invoke matching coding skills before specialized work;
+never load the full installed library. An undecided stack must not be guessed.
 Keep ticket history, research, and learned facts in `.ctx/`, not in this file.
 <!-- opencode-gen:end -->

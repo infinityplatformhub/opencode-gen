@@ -9,7 +9,8 @@
 The authoritative policy is `bootstrap/ctx/rules/workflow.md`, deployed to `.ctx/rules/workflow.md`.
 Skills contain procedures, config contains preferences, and ticket documents contain task state.
 No default engineering rules, generated architecture skills, global writes, or MCP installation.
-Legacy coding profiles remain optional source-library references and do not drive initialization.
+Coding profiles supply candidates during init; confirmed components filter the actual selection.
+Legacy profile rule files are never imposed. Undecided/custom stacks remain valid.
 
 The gate is instructional: OpenCode does not automatically execute skills or block unticketed
 tools. Session-model adherence needs its own runtime test. Explicit context checks report budget

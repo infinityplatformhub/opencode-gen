@@ -12,7 +12,13 @@ Skills hold procedures, not project facts. Facts and task state live in `.ctx/`.
 `.opencode/skills/<id>/SKILL.md`; description advertises applicability, not guaranteed execution.
 Do not disable automatic suggestions for the mandatory ticket skill.
 
-Coding expertise is optional: `/opencode-gen-add-skill <id>` activates a complete selected directory
+Init automatically selects coding expertise for confirmed detected/planned stacks, filtering
+profile candidates by actual components. Empty projects are asked their intended stack; custom
+and undecided are valid. An undecided project never receives guessed framework skills.
+`skills.auto=true` means use a matching installed skill before relevant work, not load every body.
+OpenCode shows descriptions; full instructions and references are loaded only as needed.
+
+For later additions, `/opencode-gen-add-skill <id>` activates a complete selected directory
 from the source checkout. Source location is `.ctx/local/framework/source.json`; the full cache is
 not copied into each project. `/opencode-gen-sync-skills` updates approved pinned versions. Preserve
 upstream IDs, attribution, references, and locally customized active copies.

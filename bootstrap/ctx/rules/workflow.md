@@ -5,6 +5,16 @@
 This system manages tickets, research, and memory for this project only. Existing organization
 and engineering instructions still apply. Do not install global rules, skills, or configuration.
 `config.json` supplies preferences; this file supplies workflow; skills supply procedures.
+Read config at session start and recovery. `conversation_language` controls all user-facing
+conversation, questions, progress, and final reports; files/code/comments/commits remain English.
+Unset language requires the init preference question with Thai, English, and Other/Custom.
+Installer defaults are provisional until `preferences_confirmed` is true. Preserve confirmed
+choices on upgrade; do not silently fall back to English or rewrite config wholesale.
+With `skills.auto=true`, load relevant installed coding skills before specialized work, matching
+their descriptions to the actual task. Install/discovery does not load bodies. Never load all skills
+at startup or import their references wholesale. `skills.auto=false` disables automatic coding-skill
+use only, not the ticket gate. An undecided stack is valid; ask when stack-specific work needs a
+decision and re-run stack discovery when manifests or the user's plans change.
 When project instructions conflict, surface the concrete conflict before the affected action;
 never silently override organization policy. Do not copy these rules into other documents.
 
@@ -71,3 +81,4 @@ files, commit messages, generated summaries, or another project's memory without
 Before completion run `python3 .ctx/local/framework/scripts/check-context.py <project-root>`
 and inspect intended tracked changes.
 Report goal/outcome, verification, next step, and ticket ID in chat; do not generate report files.
+Use the selected conversation language and include a short title with a ticket ID on first mention.

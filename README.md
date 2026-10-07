@@ -66,8 +66,10 @@ or the inactive V2 `instructions` config field. Rules and data are scoped to thi
 | `opencode-gen-add-skill` | Optional coding skill activation; ticket first |
 | `opencode-gen-sync-skills` | Optional upstream sync; ticket first |
 
-The 19 curated coding skills and 12 profiles remain optional in the source checkout. They are
-not copied or activated by default. Cached upstream files retain their provenance and pinned SHAs.
+Init detects existing stacks or asks for planned stacks in empty projects, including custom and
+undecided choices. It selectively installs skills matching confirmed components from the 19-skill,
+12-profile library. Relevant skills are invoked lazily as tasks require them; full bodies are never
+preloaded. No complete library copy per project. Upstream provenance and pinned SHAs are retained.
 
 ## Private data and bounded context
 
