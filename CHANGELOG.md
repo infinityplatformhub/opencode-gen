@@ -1,5 +1,12 @@
 # Changelog
 
+## Focus sidebar and short ticket IDs — 2026-10-07
+
+- Prioritize the current title/activity; mute checkpoint and status, warn only for actual blockers.
+- Remove misleading green Done and future Next from the sidebar; retain existing ticket data.
+- Use short collision-checked new IDs and readable Project setup / Framework update titles.
+- Existing tickets, IDs, private data, and customized assets remain preserved during upgrade.
+
 ## Session ticket sidebar — 2026-10-07
 
 - Append a theme-colored ticket card below native sidebar content, with Done/Next/Blocked.

@@ -91,20 +91,24 @@ def install(source, target):
         path = target / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
-    ticket_id = prefix + stamp + "-" + uuid.uuid4().hex[:8]
+    ticket_id = prefix + uuid.uuid4().hex[:8]
     if config.get("default_visibility") == "private":
         ledger = target / ".ctx/local/tickets/index.md"
     ledger.parent.mkdir(parents=True, exist_ok=True)
     ticket = ledger.parent / (ticket_id + ".md")
+    while ticket.exists():
+        ticket_id = prefix + uuid.uuid4().hex[:8]
+        ticket = ledger.parent / (ticket_id + ".md")
+    title = "Framework update" if previous else "Project setup"
     template = (source / "bootstrap/ticket.md.tmpl").read_text()
-    for key, value in {"TICKET_ID": ticket_id, "TITLE": "Initialize or update project workflow",
+    for key, value in {"TICKET_ID": ticket_id, "TITLE": title,
                        "GOAL": "Install and verify project-local ticket control",
                        "ACCEPTANCE": "Assets installed; preferences and runtime workflow verified"}.items():
         template = template.replace("{{" + key + "}}", value)
     with ticket.open("x") as file:
         file.write(template)
     with ledger.open("a") as file:
-        file.write(f"\n- {ticket_id} | open | Initialize or update project workflow\n")
+        file.write(f"\n- {ticket_id} | open | {title}\n")
     agents.write_text(new_agents)
     assets.mkdir(parents=True, exist_ok=True)
     # Inactive assets never live under an auto-discovered skills directory.

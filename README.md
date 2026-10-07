@@ -99,8 +99,10 @@ See [getting started](docs/getting-started.md), [scope and deployment](docs/depl
 
 ## Ticket sidebar
 
-Title and Context stay native at the top; the plugin appends a compact colored Ticket / Done /
-Next / Blocked card. The native footer already shows path:branch, so it is not duplicated.
+Title and Context stay native at the top; the plugin appends a focus card: Current activity,
+muted Checkpoint, and Blocked only when needed. No green partial-progress Done or Next section.
+Short new ticket IDs are secondary to the readable title. Existing IDs remain valid.
+The native footer already shows path:branch, so it is not duplicated.
 After creating/resuming a ticket, the agent calls `opencode_gen_select_ticket` with its ID and
 visibility. Selection lives in ignored `.ctx/local/sessions/<sessionID>.json`; each session has
 its own selection. Only that ticket is read. No automatic private-ticket scan or model requests.

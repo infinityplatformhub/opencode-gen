@@ -29,3 +29,14 @@ test("display parser bounds output and strips terminal control characters", () =
   assert.equal(data.done.length, 240)
   assert.ok(!data.next.includes("\u001b"))
 })
+
+test("focus layout distinguishes current activity from future plans and partial progress", () => {
+  const data = parseTicket("# T-42 — Fix login\nStatus: in-progress\n- Current: Reproducing timeout\n- Done: Preferences saved\n- Next: Deploy later\n")
+  assert.equal(data.title, "Fix login")
+  assert.equal(data.id, "T-42")
+  assert.equal(data.statusLabel, "Working")
+  assert.equal(data.current, "Reproducing timeout")
+  assert.equal(data.checkpoint, "Preferences saved")
+  assert.equal(parseTicket("# Old ticket\n- Next: Later\n").current, "")
+  assert.equal(parseTicket("Status: done").statusLabel, "Closed")
+})

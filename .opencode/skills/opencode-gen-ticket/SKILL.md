@@ -15,8 +15,8 @@ do not create context in the current subdirectory or select another organization
 2. Read only the chosen ledger and matching ticket. Resume the session's ticket when its goal
    matches; otherwise create one automatically BEFORE investigation/research/edits/checks.
    Creating tracking records and reading bootstrap policy are the pre-ticket exceptions.
-3. For a new ID, use `<ticket_prefix><UTC timestamp>-<8 random hex characters>` (for example
-   `T-20261007T120000-a1b2c3d4`) and exclusive file creation; retry on collision. Existing IDs
+3. For a new ID, use `<ticket_prefix><8 random hex characters>` (for example
+   `T-a1b2c3d4`) and exclusive file creation; retry on collision. Existing IDs
    remain valid. Use the installed ticket template. Set goal and checkable acceptance criteria.
    Append a one-line ledger entry after re-reading it; never overwrite concurrent entries.
 4. Mark in-progress and work. The current session carries its ticket ID; there is no singleton
@@ -24,6 +24,10 @@ do not create context in the current subdirectory or select another organization
    If `opencode_gen_select_ticket` is available, call it with the existing ticket ID and its
    shared/private visibility to bind this session's sidebar. It never replaces ticket creation.
    Record checkpoints on phase changes, blockers, or handoff.
+   Maintain `- Current:` as the activity actually underway (or the question awaiting a reply),
+   not a future plan. The sidebar displays Current and a muted Checkpoint; it does not display
+   Next or label partial progress Done. Keep Current and the completed checkpoint to one short
+   sentence each. On completion set Current to none; ticket status done maps to Closed in the UI.
    If another session owns the same ticket, coordinate or open a separate related ticket.
 5. Load research/memory skills only for relevant work. Reference results instead of copying
    them between files. Resume after compaction by reading this workflow and the selected ticket.

@@ -24,7 +24,7 @@ function TicketCard(props: { context: Plugin.Context; sessionID: string }) {
         if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$/.test(selected.ticket) || !["shared", "private"].includes(selected.visibility)) throw new Error("Invalid selection")
         const folder = selected.visibility === "private" ? ".ctx/local/tickets" : ".ctx/tickets"
         const next = parseTicket(await read(`${folder}/${selected.ticket}.md`))
-        if (!disposed) { setTicket(next); setState(selected.visibility === "private" ? "Private ticket" : "Ticket") }
+        if (!disposed) { setTicket(next); setState(selected.visibility === "private" ? "CURRENT · private" : "CURRENT") }
       } catch {
         if (!disposed) { setTicket(undefined); setState("Select a ticket to show progress") }
       } finally { busy = false }
@@ -37,13 +37,19 @@ function TicketCard(props: { context: Plugin.Context; sessionID: string }) {
   const theme = props.context.theme
   return (
     <box border={["top"]} borderColor={theme.text.muted} paddingTop={1} gap={1}>
-      <text fg={theme.text.base}><b>◈ {state()}</b></text>
+      <box flexDirection="row" justifyContent="space-between" gap={1}>
+        <text fg={theme.text.muted}>{ticket() ? state() : "CURRENT"}</text>
+        <Show when={ticket()}>{(value) => <text fg={value().status === "blocked" ? theme.text.feedback.warning.base : theme.text.muted}>{value().status === "blocked" ? "!" : "●"} {value().statusLabel}</text>}</Show>
+      </box>
+      <Show when={!ticket()}><text fg={theme.text.muted}>{state()}</text></Show>
       <Show when={ticket()}>{(value) => <>
-        <text fg={theme.text.base}>{value().title}</text>
-        <text fg={theme.text.muted}>● {value().status || "open"}</text>
-        <Show when={value().done}><box><text fg={theme.text.feedback.success.base}><b>✓ Done</b></text><text fg={theme.text.muted}>{value().done}</text></box></Show>
-        <Show when={value().next}><box><text fg={theme.text.base}><b>→ Next</b></text><text fg={theme.text.muted}>{value().next}</text></box></Show>
-        <Show when={value().blocker && !/^(none|ไม่มี|—)$/i.test(value().blocker)}><box><text fg={theme.text.feedback.warning.base}><b>! Blocked</b></text><text fg={theme.text.muted}>{value().blocker}</text></box></Show>
+        <box>
+          <text fg={theme.text.base} maxHeight={2}><b>{value().title}</b></text>
+          <Show when={value().id}><text fg={theme.text.muted} wrapMode="none" truncate>{value().id}</text></Show>
+        </box>
+        <Show when={value().current && value().status !== "done"}><text fg={theme.text.base} maxHeight={2}>{value().current}</text></Show>
+        <Show when={value().checkpoint}><box><text fg={theme.text.muted}>Checkpoint</text><text fg={theme.text.muted} maxHeight={2}>{value().checkpoint}</text></box></Show>
+        <Show when={value().blocker && !/^(none|ไม่มี|—)$/i.test(value().blocker)}><box><text fg={theme.text.muted}>Blocked</text><text fg={theme.text.base} maxHeight={2}>{value().blocker}</text></box></Show>
       </>}</Show>
     </box>
   )
