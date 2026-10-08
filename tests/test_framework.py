@@ -10,6 +10,15 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 class FrameworkTests(unittest.TestCase):
+    def test_subagent_session_guard_is_installed_and_bounded(self):
+        with tempfile.TemporaryDirectory(dir="/tmp/opencode") as temp:
+            root = Path(temp)
+            self.install(root)
+            text = (root / "AGENTS.md").read_text()
+            self.assertIn("When spawning a new subagent, omit sessionID entirely", text)
+            self.assertIn("never retry with fabricated IDs", text)
+            self.assertLessEqual(len(text.encode()), 2048)
+
     def test_pipe_install_downloads_and_cleans_temporary_source(self):
         with tempfile.TemporaryDirectory(dir="/tmp/opencode") as temp:
             base = Path(temp)

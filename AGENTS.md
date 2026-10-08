@@ -13,6 +13,10 @@ Prompt framework specifically for OpenCode v2. This is a framework repository, n
 - Official origin: git@github.com:infinityplatformhub/opencode-gen.git, branch master.
 - Do not commit or push without the user's explicit approval.
 - Keep reports in chat and update relevant existing documentation.
+- When spawning a new subagent, omit sessionID entirely. Use sessionID only to continue a specific
+  child with an actual ID returned by a previous subagent call; never invent IDs or placeholders.
+- If continuation reports a missing session, stop and report or start a new child without sessionID;
+  never loop through fabricated IDs. Delegate only when the user or applicable instructions request it.
 
 ## Layout
 

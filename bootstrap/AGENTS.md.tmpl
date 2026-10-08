@@ -14,4 +14,8 @@ Load research/memory skills only when the task requires them. Never preload priv
 When config skills.auto is true, invoke matching coding skills before specialized work;
 never load the full installed library. An undecided stack must not be guessed.
 Keep ticket history, research, and learned facts in `.ctx/`, not in this file.
+When spawning a new subagent, omit sessionID entirely. Set it only to a real sessionID returned
+by an earlier subagent call when continuing that specific child; never invent IDs or placeholders.
+If continuation reports a missing session, stop and report or start a new child without sessionID;
+never retry with fabricated IDs. This guard does not authorize delegation beyond the requested scope.
 <!-- opencode-gen:end -->

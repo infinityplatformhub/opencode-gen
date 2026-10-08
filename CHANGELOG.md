@@ -1,5 +1,11 @@
 # Changelog
 
+## Subagent continuation guard — 2026-10-08
+
+- In project instructions, require new child calls to omit sessionID; continuation may use only
+  a real previously returned child ID. Missing sessions must not trigger fabricated-ID retry loops.
+- Instruction-level workaround only; no claim of a verified model/router root cause or tool-schema fix.
+
 ## Focus sidebar and short ticket IDs — 2026-10-07
 
 - Prioritize the current title/activity; mute checkpoint and status, warn only for actual blockers.
