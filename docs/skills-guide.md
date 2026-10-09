@@ -7,6 +7,9 @@ in `.ctx/rules/workflow.md`. Avoid repeated loading when instructions are alread
 `opencode-gen-research` handles substantial investigations. `opencode-gen-memory` handles relevant
 recall and reusable verified facts. Both first establish a ticket and preserve data visibility.
 Init/update/add-skill/sync-skills are explicit management workflows with the same ticket gate.
+These four management skills set `metadata.opencode/autoinvoke: false`: they stay registered
+for explicit command loading but are not advertised for automatic model selection. Ticket,
+research, and memory remain advertised. This metadata does not preload any skill body.
 
 Skills hold procedures, not project facts. Facts and task state live in `.ctx/`. OpenCode discovers
 `.opencode/skills/<id>/SKILL.md`; description advertises applicability, not guaranteed execution.

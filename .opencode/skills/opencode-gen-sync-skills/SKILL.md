@@ -1,5 +1,7 @@
 ---
 name: opencode-gen-sync-skills
+metadata:
+  opencode/autoinvoke: false
 description: Check pinned external skills for upstream updates and synchronize approved versions
 ---
 

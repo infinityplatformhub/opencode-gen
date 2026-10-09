@@ -1,5 +1,7 @@
 ---
 name: opencode-gen-init
+metadata:
+  opencode/autoinvoke: false
 description: Initialize or repair project-local ticket control, context, and private/shared storage
 ---
 

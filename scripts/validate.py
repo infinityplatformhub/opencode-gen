@@ -18,6 +18,8 @@ for command in (ROOT / ".opencode/commands").glob("*.md"):
     assert skill.is_file(), skill
     assert f"name: {command.stem}\n" in skill.read_text(), skill
     assert "$ARGUMENTS" in command.read_text(), command
+    hidden = command.stem in {"opencode-gen-init", "opencode-gen-update", "opencode-gen-add-skill", "opencode-gen-sync-skills"}
+    assert ("  opencode/autoinvoke: false\n" in skill.read_text()) == hidden, skill
 assert (ROOT / "bootstrap/AGENTS.md.tmpl").is_file()
 assert not (ROOT / "CLAUDE.md").exists()
 assert len((ROOT / "bootstrap/AGENTS.md.tmpl").read_bytes()) <= 2048

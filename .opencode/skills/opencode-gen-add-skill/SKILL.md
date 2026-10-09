@@ -1,5 +1,7 @@
 ---
 name: opencode-gen-add-skill
+metadata:
+  opencode/autoinvoke: false
 description: List or activate selected skills from the OpenCode Gen curated library
 ---
 

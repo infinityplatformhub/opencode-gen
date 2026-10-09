@@ -1,5 +1,7 @@
 ---
 name: opencode-gen-update
+metadata:
+  opencode/autoinvoke: false
 description: Update project-local OpenCode Gen assets without replacing tickets, memory, or organization rules
 ---
 
